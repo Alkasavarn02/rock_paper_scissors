@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <script src="script.js" defer></script>
+    <title>Rock Paper Scissor</title>
+</head>
+<body>
+    <div class="wrapper d-flex flex-direction-column">
+        <div class="score-board d-flex border-radius">
+            <div class="left-box d-flex flex-direction-column">
+                <p>ROCK</p>
+                <p>PAPER</p>
+                <p>SCISSORS</p>
+            </div>
+            <div class="right-box d-flex">
+                <div class="score-box d-flex border-radius flex-direction-column">
+                    <p class = "computer-score font">COMPUTER SCORE</p>
+                    <h1 class = "score" id="comp-score">0</h1>
+                </div>
+                <div class="score-box d-flex border-radius flex-direction-column">
+                    <p class="your-score font">YOUR SCORE</p>
+                    <h1 class = "score" id="y-score">0</h1>
+                </div>
+            </div>
+        </div>
+        <div class="hands-container container d-flex">
+            <div class="rock choice">
+                <div class="image blue scale-btn cursor-pointer">
+                    <img src="./rock.svg" alt="rock" />
+                </div>
+            </div>
+            <div class="scissors choice">
+                <div class="image purple scale-btn cursor-pointer">
+                    <img src="scissors.svg" alt="scissors" />
+                </div>
+            </div>
+            <div class="paper choice">
+                <div class="image yellow scale-btn cursor-pointer">
+                    <img src="./paper.svg" alt="paper" />
+                </div>
+            </div>
+        </div>
+        <div class="score-template container d-flex">
+            <div class="user-hand d-flex flex-direction-column">
+                <h1>You Picked</h1>
+                <div class="userhand-img image">
+                    <img id="userHandImg" src="./paper.svg">
+                </div>
+            </div>
+            <div class="play-again d-flex flex-direction-column">
+                <h1 class="winner">YOU WIN</h1>
+                <h2 id="against-pc">AGAINST PC</h2>
+                <button class="play-btn scale-btn cursor-pointer">PLAY AGAIN</button>
+            </div>
+            <div class="comp-hand d-flex flex-direction-column">
+                <h1>PC Picked</h1>
+                <div class="comphand-img image">
+                    <img id="compHandImg" src="./paper.svg">
+                </div>
+            </div>
+        </div>
+        <div class="popup-container d-flex flex-direction-column">
+            <div class="trophy-img d-flex"><img src="./trophy.png"></div>
+            <h1>HURRAY!!</h1>
+            <h2>YOU WON THE GAME</h2>
+            <button class="trophy-btn scale-btn cursor-pointer">PLAY AGAIN</button>
+        </div>
+        <div class="rule-box d-flex flex-direction-column">
+            <h1>Game Rules</h1>
+            <ul>
+                <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
+                <li>Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</li>
+                <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time</li>
+                <li>If both players lay down the same hand, each player lays down another hand</li>
+            </ul>
+        </div>
+        <button class="cross-btn d-flex scale-btn cursor-pointer">X</button>
+        <button class="rule-btn scale-btn cursor-pointer">RULES</button>
+        <button class="next-btn scale-btn cursor-pointer">NEXT</button>
+    </div>
+    
+</body>
+</html>
