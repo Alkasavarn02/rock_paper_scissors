@@ -3,85 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RockPaperScissors</title>
     <link rel="stylesheet" href="style.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
-    <script src="script.js" defer></script>
-    <title>Rock Paper Scissor</title>
+    <script src="./script.js" defer></script>
 </head>
 <body>
-    <div class="wrapper d-flex flex-direction-column">
-        <div class="score-board d-flex border-radius">
-            <div class="left-box d-flex flex-direction-column">
-                <p>ROCK</p>
-                <p>PAPER</p>
-                <p>SCISSORS</p>
+    <main class="dflex flexDirectionColumn justifyCenter alignCenter">
+
+        <header class="dflex header alignCenter">
+            <div class="leftSection">
+                <h1>ROCK</h1>
+                <h1>PAPER</h1>
+                <h1>SCISSORS</h1>
             </div>
-            <div class="right-box d-flex">
-                <div class="score-box d-flex border-radius flex-direction-column">
-                    <p class = "computer-score font">COMPUTER SCORE</p>
-                    <h1 class = "score" id="comp-score">0</h1>
+
+            <div class="RightSection dflex">
+                <div class="comScoreSection flexDirectionColumn scoreSection textAlignCenter">
+                    <p>COMPUTER SCORE</p>
+                    <h1 id="compScore">0</h1>
                 </div>
-                <div class="score-box d-flex border-radius flex-direction-column">
-                    <p class="your-score font">YOUR SCORE</p>
-                    <h1 class = "score" id="y-score">0</h1>
+                <div class="yourScoreSection flexDirectionColumn scoreSection textAlignCenter">
+                    <p>YOUR</p>
+                    <p>SCORE</p>
+                    <h1 id="yourScore">0</h1>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="playContainer">
+
+            <div class="gameContainer dflex justifyCenter alignCenter">
+                <div class="imgContainer rockImgcontainer cursor-pointer" id="transition-Properties">
+                    <img src="./assests/Rock.png" data-value="rock" alt="rock">
+                </div>
+                <div class="imgContainer scissorsimgcontainer cursor-pointer" id="transition-Properties">
+                    <img src="./assests/scissors.png" alt="scissor">
+                </div>
+                <div class="imgContainer paperImgcontainer cursor-pointer" id="transition-Properties">
+                    <img src="./assests/paper.png" alt="paper">
+                </div>
+            </div>
+
+            <div class="line1 border-Position-Properties"></div>
+            <div class="line2 border-Position-Properties"></div>
+            <div class="line3 border-Position-Properties"></div>
+
+        </div>
+
+        <div class="dflex resultContainer justifyCenter alignCenter textAlignCenter">
+            <div class="leftContainer" >
+                <h3 id="heading">YOU PICKED</h3>
+                <div class="outer-circle-dimension left-outer-circle border-radius dflex justifyCenter alignCenter">
+                    <div class="middle-circle-dimension left-middle-circle border-radius dflex justifyCenter alignCenter">
+                        <div class="inner-circle-dimension left-inner-circle border-radius dflex justifyCenter alignCenter">
+                            <div class="imgContainer leftIcon dflex justifyCenter alignCenter"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middleContainer">
+                <h1 id="whoWin">YOU WIN</h1>
+                <h2 id='against-Pc'>AGAINST PC</h2>
+                <button id="playAgain" class="cursor-pointer">PLAY AGAIN</button>
+            </div>
+            <div class="rightContainer" >
+                <h3 id="heading">PC PICKED</h3>
+                <div class="outer-circle-dimension right-outer-circle border-radius dflex justifyCenter alignCenter">
+                    <div class="middle-circle-dimension right-middle-circle border-radius dflex justifyCenter alignCenter">
+                        <div class="inner-circle-dimension right-inner-circle border-radius dflex justifyCenter alignCenter">
+                            <div class="imgContainer rightIcon"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="hands-container container d-flex">
-            <div class="rock choice">
-                <div class="image blue scale-btn cursor-pointer">
-                    <img src="./rock.svg" alt="rock" />
-                </div>
-            </div>
-            <div class="scissors choice">
-                <div class="image purple scale-btn cursor-pointer">
-                    <img src="scissors.svg" alt="scissors" />
-                </div>
-            </div>
-            <div class="paper choice">
-                <div class="image yellow scale-btn cursor-pointer">
-                    <img src="./paper.svg" alt="paper" />
-                </div>
-            </div>
+
+        <div class="rulescontainer">
+
+            <h2 class="textAlignCenter">Game Rules</h2>
+
+            <ul>
+                <li><p>Rock beats scissors, scissors beat paper, and paper beats rock.</p></li>
+                <li><p>Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</p></li>
+                <li><p>Use rock, paper, scissors to settle minor decisions or simply play to pass the time</p></li>
+                <li><p>If both players lay down the same hand, each player lays down another hand</p></li>
+            </ul>
+
         </div>
-        <div class="score-template container d-flex">
-            <div class="user-hand d-flex flex-direction-column">
-                <h1>You Picked</h1>
-                <div class="userhand-img image">
-                    <img id="userHandImg" src="./paper.svg">
-                </div>
-            </div>
-            <div class="play-again d-flex flex-direction-column">
-                <h1 class="winner">YOU WIN</h1>
-                <h2 id="against-pc">AGAINST PC</h2>
-                <button class="play-btn scale-btn cursor-pointer">PLAY AGAIN</button>
-            </div>
-            <div class="comp-hand d-flex flex-direction-column">
-                <h1>PC Picked</h1>
-                <div class="comphand-img image">
-                    <img id="compHandImg" src="./paper.svg">
-                </div>
-            </div>
+
+        <div class="crossImageContainer cursor-pointer">
+            <img src="./assests/X.png" alt="crossImage">
         </div>
-        <div class="popup-container d-flex flex-direction-column">
-            <div class="trophy-img d-flex"><img src="./trophy.png"></div>
+        
+        <button class="rulesbutton cursor-pointer textAlignCenter">Rules</button>
+
+        <div class="dflex flexDirectionColumn trophycontainer alignCenter">
+
+            <div class="trophyImgContainer" id="bacgroundProperties">
+                <img src="./assests/trophy.png" class="trophyImg" alt="">
+            </div>
+
             <h1>HURRAY!!</h1>
             <h2>YOU WON THE GAME</h2>
-            <button class="trophy-btn scale-btn cursor-pointer">PLAY AGAIN</button>
+
+            <button class="trophyPlayBtn cursor-pointer textAlignCenter">PLAY AGAIN</button>
         </div>
-        <div class="rule-box d-flex flex-direction-column">
-            <h1>Game Rules</h1>
-            <ul>
-                <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
-                <li>Agree ahead of time whether you’ll count off “rock, paper, scissors, shoot” or just “rock, paper, scissors.”</li>
-                <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time</li>
-                <li>If both players lay down the same hand, each player lays down another hand</li>
-            </ul>
-        </div>
-        <button class="cross-btn d-flex scale-btn cursor-pointer">X</button>
-        <button class="rule-btn scale-btn cursor-pointer">RULES</button>
-        <button class="next-btn scale-btn cursor-pointer">NEXT</button>
-    </div>
-    
+
+        <button class="nextBtn cursor-pointer textAlignCenter">NEXT</button>
+
+    </main>
 </body>
 </html>

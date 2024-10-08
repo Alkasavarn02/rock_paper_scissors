@@ -1,278 +1,414 @@
-:root{
-    --color : #FFFFFF;
-    --body-bg-color: #8CC461;
-    --score-board-font-color: #656565;
-    --score-color: #252525;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dangrek&display=swap');
 
+:root {
+    --bgColor: #8CC461;
+    --whiteColor: #ffffff
 }
 
-* {
-    margin:0;
-    padding:0;
+*{
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
-body {
-    background-color: var(--body-bg-color);
-    font-family: "Roboto";
-}
-
-.d-flex {
+.dflex{
     display: flex;
 }
-.flex-direction-column {
+.flexDirectionColumn{
     flex-direction: column;
 }
-.border-radius {
-    border-radius: 10px;
-}
-
-.wrapper {
-    width: 100vw;
-    height: 100vh;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.score-board {
-    border: 2px solid var(--color);
-    height: 25vh;
-    width: 50vw;
-    padding: 5px;
-    justify-content: space-between;
-    /* display: none; */
-} 
-
-.left-box {
-    justify-content: space-evenly;
-    margin-left: 10px; 
-    font-size: 30px;
-    font-weight: 400;
-    color: var(--color);
-}
-
-.right-box {
-    justify-content: space-between;
-    margin-right: 10px;
-}
-
-.score-box {
-    width: 200px;
-    margin: 10px;
-    background-color: var(--color);
-    text-align: center;
-}
-.font {
-    font-size: 25px;
-    font-weight: 200;
-    color: var(--score-board-font-color);
-    padding-top: 10px;
-}
-.score-box .computer-score{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-.score-box .score{
-    font-size: 50px;
-    font-weight: 800;
-    color: var(--score-color);
-}
-.score-box .your-score{
-    padding-left: 40px;
-    padding-right: 40px; 
-} 
-
-.scale-btn:active {
-    transform: translateY(4px);
-}
-.cursor-pointer {
+.cursor-pointer{
     cursor: pointer;
 }
-
-.container {
-    margin: 50px;
-    width: 500px;
-    flex-wrap: wrap;
+.justifyCenter{
     justify-content: center;
+}
+.alignCenter{
     align-items: center;
 }
-.hands-container {
-    gap: 50px;
-    /* display: none; */
+.textAlignCenter{
+    text-align: center;
 }
 
-.image {
+main {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bgColor);
+    font-family: Roboto;
+    gap: 20px;
+    position: relative;
+}
+
+header {
+    max-width: 800px;
+    width: 100%;
+    height: 158px;
+    border: 2px solid var(--whiteColor);
+    border-radius: 13px;
+    font-weight: 600;
+}
+
+header .leftSection{
+    width: 50%;
+    padding-left: 20px;
+    color: var(--whiteColor);
+    font-size: 19px;
+    line-height: 46.88px;
+    letter-spacing: 0.1em;
+}
+header .RightSection{
+    justify-content: space-around;
+    width: 50%;
+}
+
+header .RightSection .scoreSection {
+    font-size: 20px;
+    line-height: 19.92px;
+    background-color: #fff;
+    width: 139px;
+    height: 128px;
+    border-radius: 9px;
+    color: #656565;
     padding: 10px;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+}
+
+header .RightSection .scoreSection h1 {
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 79.69px;
+    color: #000;
+}
+
+.playContainer{
+    position: relative;
+    margin-top: 25px;
+}
+
+.gameContainer{
+    flex-wrap: wrap;
+    width: 400px;
+    gap:80px;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.imgContainer {
+    width: 100px;
+    height: 100px;
+    padding: 8px;
+    border-radius: 50px;
     background-color:#FFFFFF;
     box-shadow: 3px 0px 21px 1px #00000033 inset;
 }
-.blue {
-    border: 12px solid #0074B6;
-    box-shadow: -1px 1px 11px 0px #00000059;
+.rockImgcontainer {
+    margin-right: 25px;
+    border: 11px solid #0074B6;
 }
-.purple {
-    border: 12px solid #BD00FF;
-    box-shadow: -1px 1px 11px 0px #00000059;
+.scissorsimgcontainer{
+    margin-left: 25px ;
+    border: 11px solid #BD00FF;
 }
-.yellow {
-    border: 12px solid #FFA943;
-    box-shadow: -1px 1px 11px 0px #00000059;
+.paperImgcontainer {
+    margin-left: 8px;
+    border: 11px solid #FFA943;
 }
-.rock {
-    margin-right: 30px;
-}
-.scissors {
-    margin-left: 30px;
+.rockImgcontainer:active,.scissorsimgcontainer:active,.paperImgcontainer:active {
+    transform: translateY(3px); 
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2)
 }
 
-img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain
+#transition-Properties{
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
 }
 
-.rule-box {
-    width: 300px;
-    height: 350px;
-    padding: 20px;
-    gap: 10px;
-    position: absolute;
-    right: 0;
-    margin-top: 220px;
-    margin-right: 60px;
-    border: 7px solid #fff;
-    border-radius: 12px;
-    background-color:#004429;
-    color: var(--color);
-
-}
-.rule-box ul {
-    list-style-type: square;
-}
-.rule-box ul li::marker {
-    color: #FFD600;
-}
-.rule-box h1 {
-    text-align: center;
-}
-.rule-btn, .next-btn {
-    border: 3px solid #FFFFFF;
-    border-radius: 20px;
-    width: 175px;
-    height: 50px;
-    font-size: 30px;
-    font-weight: 200;
-    background-color: var(--body-bg-color);
-    color: var(--color);
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    margin-right: 60px;
-    margin-bottom: 20px;
-}
-.next-btn {
-    display: none;
-    justify-content: center;
-    align-items: center;
-
-}
-.cross-btn {
-    width: 50px;
-    height: 50px;
-    font-size: 30px;
-    font-weight: 600;
-    border: 3px solid var(--color);
-    border-radius: 50%;
-    justify-content: center;
-    align-items: center;
-    background-color: #FF0000;
-    color: var(--color);
-    position: absolute;
-    right: 0;
-    margin-top: 200px;
-    margin-right: 50px;
-}
-.score-template {
-    width: 50vw;
-    justify-content: space-evenly;
-    margin-top: 80px;
-    display: none;
-}
-.score-template > div {
-    flex: 1;
-}
-.user-hand,.comp-hand {
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 30px;
-    color: var(--color)
-}
-.user-hand h1, .comp-hand h1 {
-    font-size: 20px;
-}
-
-.play-again {
-    align-items: center;
-    justify-content: center;
-    line-height: 50px;
-    color: var(--color);
-    padding: 5px;
-}
-.play-again h1 {
-    font-size: 35px;
-    font-weight: 800;
-    text-align: center;
-}
-
-.play-again .play-btn, .trophy-btn {
-    width: 150px;
-    height: 40px;
-    border-radius: 10px;
-    font-size: 15px;
-    color: #6B6B6B;
-    border: none;
-    outline: none;
-}
-
-.popup-container {
-    width: 40vw;
-    height: 60vh;
-    position: absolute;
-    top: 20%;
-    left: 30%; 
-    align-items: center;  
-    justify-content: center;
-    color: var(--color);
-    display: none;
-}
-.popup-container h1{
-    margin-top: 15px;
-    font-size: 60px;
-}
-.popup-container h2{
-    margin-top: 15px;
-}
-.popup-container .trophy-btn{
-    margin-top: 20px;
-}
-.trophy-img {
-    width: 100%;
-    height: 44%;
-    padding: 30px;
-    background-image: url(./Group\ 5.png);
+#bacgroundProperties{
+    background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    
 }
 
+.line1{
+    width: 132px;
+    top: 41px;
+    right: 134px;
+}
+.line2{
+    width: 118px;
+    transform: rotate(-120.58deg);
+    top: 129px;
+    right: 194px; 
+}
+.line3{
+    width: 113px;
+    transform: rotate(-60.58deg);
+    top: 131px;
+    right: 85px;
+}
+.border-Position-Properties{
+    border: 8px solid #000000A3;
+    position: absolute;
+}
 
+.resultContainer{
+    height: 300px;
+    max-width: 700px;
+    width: 100%;
+    gap: 80px;
+    color: #fff;
+    font-weight: 800;
+    display: none;
+    margin-top: 5px;
+}
+.resultContainer .middleContainer h1 {
+    font-size: 32px;
+    line-height: 45.7px;
+    letter-spacing: 0.1em;
+}
+.resultContainer .middleContainer h2{
+    font-size: 23px;
+    letter-spacing: 0.1em;
+    margin-bottom: 15px;
+}
+.resultContainer .middleContainer button{
+    width: 174px;
+    height: 44px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 17.58px;
+    letter-spacing: 0.1em;
+    color: #6B6B6B;
+    border: none;
+    transition: transform 0.1s cubic-bezier(0.22, 0.61, 0.36, 1)
+}
+.resultContainer .middleContainer button:active, .crossImageContainer:active, .rulesbutton:active, .trophyPlayBtn:active, .nextBtn:active{
+    transform: translateY(5px)
+}
 
+.rulescontainer{
+    width: 315px;
+    border-radius: 13px;
+    border: 7px solid #fff;
+    background-color: #004429;
+    font-size: 15px;
+    padding: 20px 15px 20px 25px;
+    font-weight: 400;
+    color: #FFFFFF;
+    text-align: left;
+    position: absolute;
+    bottom: 75px;
+    right: 60px;
+    display: none;
+}
+.rulescontainer ul {
+    list-style-type: none;
+    list-style-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Crect width='10' height='10' fill='yellow'/%3E%3C/svg%3E");
+}
+.rulescontainer >ul >li >p {
+    margin-top: 10px;
+    margin-left: 10px;
+    flex:1
+}
+.rulescontainer h2 {
+    font-size: 29px;
+    font-weight: 500;
+    line-height: 33.98px;
+}
+.crossImageContainer {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #fff;
+    background-color: #FF0000;
+    border-radius: 50%;
+    padding: 5px;
+    position: absolute;
+    top: 270px;
+    right: 50px;
+    display: none;
+    transition: transform 0.1s cubic-bezier(0.22, 0.61, 0.36, 1)
+}
 
+.rulesbutton{
+    width: 119px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #fff;
+    background-color:transparent;
+    position: absolute;
+    bottom: 25px;
+    right: 55px;
+    transition: transform 0.1s cubic-bezier(0.22, 0.61, 0.36, 1)
+}
 
+.trophycontainer{
+    color: #FFFFFF;
+    display: none;
+}
+.trophyImg{
+    padding-top: 67px;
+}
+.trophyImgContainer{
+    width: 346.43px;
+    height: 201px;
+    background-image: url(./assests/star.png);
+}
+.trophycontainer h1{
+    font-size: 70px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    margin-top: 20px;
+}
+.trophycontainer h2{
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 48.05px;
+    letter-spacing: 0.1em;
+}
 
+.trophyPlayBtn{
+    width: 174px;
+    height: 44px;
+    border-radius: 9px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: #6B6B6B;
+    border: none;
+    margin-top: 50px;
+    transition: transform 0.1s cubic-bezier(0.22, 0.61, 0.36, 1)
+}
 
+#heading {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 19.92px;
+    letter-spacing: 0.1em;
+    margin-bottom: 15px;
+}
+
+.nextBtn{
+    width: 119px;
+    height: 40px;
+    border-radius: 10px;
+    border: 2px solid #fff;
+    opacity: 0px;
+    color: #fff;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 17.26px;
+    letter-spacing: 0.1em;
+    background: transparent;
+    position: absolute;
+    bottom: 25px;
+    right: 55px;
+    display: none;
+    transition: transform 0.1s cubic-bezier(0.22, 0.61, 0.36, 1)
+}
+.border-radius{
+    border-radius: 50pc;
+}
+
+.inner-circle-dimension {
+    width: 150px;
+    height: 150px;
+}
+.middle-circle-dimension {
+    width: 187px;
+    height: 187px;
+}
+.outer-circle-dimension {
+    width: 220px;
+    height: 220px;
+}
+
+@media only screen and (max-width: 480px) {
+    header .leftSection {
+        width: 50%;
+        padding-left: 7px;
+        font-size: 15px;
+    }
+    header .RightSection .scoreSection {
+        font-size: 14px;
+        width: 95px;
+    }
+    .resultContainer {
+        gap: 5px;
+        height: 265px;
+    }
+    .resultContainer .Section2 button {
+        width: 130px;
+        height: 40px;
+        font-size: 13px;
+    }
+    .resultContainer .Section2 h1 {
+        font-size: 27px;
+    }
+    .resultContainer .Section2 h2 {
+        font-size: 18px;
+    }
+    .resultContainer .middleContainer h1 {
+        font-size: 17px;
+    }
+    .resultContainer .middleContainer h2 {
+        font-size: 12px;
+    }
+    .resultContainer .middleContainer button {
+        width: 112px;
+        font-size: 12px;
+    }
+    .crossImageContainer {
+        top: 182px;
+    }
+    .trophycontainer h1 {
+        font-size: 50px;
+    }
+    .trophycontainer h2 {
+        font-size: 25px;
+    }
+    .trophyPlayBtn {
+        margin-top: 19px;
+    }
+    .imgContainer {
+        width: 85px;
+        height: 85px;
+        padding: 5px;
+    }
+    .line1 {
+        width: 132px;
+        top: 36px;
+        right: 134px;
+    }
+    .line2 {
+        width: 117px;
+        top: 119px;
+        right: 196px;
+    }
+    .line3 {
+        width: 112px;
+        top: 119px;
+        right: 86px;
+    }
+    header .RightSection .scoreSection h1 {
+        font-size: 55px;
+    }
+    .inner-circle-dimension {
+        width: 120px;
+        height: 120px;
+    }
+    .middle-circle-dimension {
+        width: 145px;
+        height: 145px;
+    }
+    .outer-circle-dimension {
+        width: 169px;
+        height: 169px;
+    }
+}

@@ -1,184 +1,193 @@
-let computerScore = 0
-let yourScore = 0 
+let gameContainer = document.querySelector(".gameContainer")
+let rock = document.querySelector(".rockImgcontainer")
+let paper = document.querySelector(".paperImgcontainer")
+let scissor = document.querySelector(".scissorsimgcontainer")
+let playContainer = document.querySelector(".playContainer")
+let resultContainer = document.querySelector(".resultContainer")
+let leftIcon = document.querySelector(".leftIcon")
+let userScoreBoard = document.querySelector("#yourScore")
+let compScoreBoard = document.querySelector("#compScore")
+let whoWin = document.querySelector("#whoWin")
+let playAgain = document.querySelector("#playAgain")
+let rulesbutton = document.querySelector(".rulesbutton")
+let rulescontainer = document.querySelector(".rulescontainer")
+let crossImageContainer = document.querySelector(".crossImageContainer")
+let header = document.querySelector(".header")
+let trophycontainer = document.querySelector(".trophycontainer")
+let nextBtn = document.querySelector(".nextBtn")
+let trophyPlayBtn = document.querySelector(".trophyPlayBtn")
+let againstPc = document.querySelector("#against-Pc")
+let leftInnerCircle = document.querySelector(".left-inner-circle")
+let leftMiddleCircle = document.querySelector(".left-middle-circle")
+let leftOuterCircle = document.querySelector(".left-outer-circle")
+let rightInnerCircle = document.querySelector(".right-inner-circle")
+let rightMiddleCircle = document.querySelector(".right-middle-circle")
+let rightOuterCircle = document.querySelector(".right-outer-circle")
 
-let choice = document.querySelector(".hands-container")
-const popUpContainer = document.querySelector(".popup-container")
-const scoreBoard = document.querySelector(".score-board")
-const scoretemplate = document.querySelector(".score-template")
+const imgProp = {
+    'rock' : "./assests/Rock.png",
+    'paper' : "./assests/paper.png",
+    'scissor' : "./assests/scissors.png"
+}
+const borderProp = {
+    'rock': "11px solid #0074B6",
+    'paper': "11px solid #FFA943",
+    'scissor': "11px solid #BD00FF"
+}
 
-const imgOptions = {
-    'rock': "rock.svg",
-    'paper': "paper.svg",
-    'scissors': "scissors.svg"
-};
+let userScore = localStorage.getItem('userScore') ? parseInt(localStorage.getItem('userScore')) : 0;
+let compScore = localStorage.getItem('compScore') ? parseInt(localStorage.getItem('compScore')) : 0;
 
-const imgClass = {
-    rock: 'blue',
-    paper: 'yellow',
-    scissors: 'purple'
-};
+userScoreBoard.innerHTML = userScore;
+compScoreBoard.innerHTML = compScore;
 
-const showWinner = (userWin)=>{
+let compSelect = ()=> {
+    const gameElement = ['rock','paper','scissor']
+    const randomIndex = Math.floor(Math.random()*3)
+    return gameElement[randomIndex]
+}
+
+const showWinner = (userWin) => {
     if(userWin){
-        yourScore ++;
+        
+        setTimeout(()=>{
+            userScore++
 
-        let yScore = document.querySelector("#y-score");
-        yScore.innerText = yourScore;
+            userScoreBoard.innerHTML = userScore
+            localStorage.setItem("userScore",userScore)
+
+            whoWin.innerHTML = 'YOU WIN'
+            againstPc.innerHTML = "AGAINST PC"
+            playAgain.innerHTML = "PLAY AGAIN"
+
+            rightInnerCircle.style.backgroundColor = "transparent";
+            rightMiddleCircle.style.backgroundColor = "transparent";
+            rightOuterCircle.style.backgroundColor = "transparent";
+
+            leftInnerCircle.style.backgroundColor = "#3B6718";
+            leftMiddleCircle.style.backgroundColor = "#1DA82BC9";
+            leftOuterCircle.style.backgroundColor = "#2E9A2563";
     
-        const showWinner = document.querySelector(".winner")
-        showWinner.innerText = "YOU WIN"
-
-        const againstPc = document.querySelector("#against-pc")
-        againstPc.innerText = "AGAINST PC"
-
-        if (yourScore > computerScore) {
-            const ruleBtn = document.querySelector(".rule-btn")
-            ruleBtn.style.marginRight = '250px'
-
-            const nextBtn = document.querySelector(".next-btn")
-            nextBtn.style.display = 'flex'
-        }
-
-
+            if (userScore > compScore){
+                rulesbutton.style.right = '195px'
+                nextBtn.style.display = 'block'
+            }
+        },500)
     }
     else{
-        computerScore ++;
+        setTimeout(()=>{
+            compScore++
+            compScoreBoard.innerHTML = compScore
+            localStorage.setItem('compScore',compScore)
 
-        let cScore = document.querySelector("#comp-score");
-        cScore.innerText = computerScore;
+            whoWin.innerHTML = 'YOU LOST'
+            againstPc.innerHTML = "AGAINST PC"
+            playAgain.innerHTML = "PLAY AGAIN"
 
-        const showWinner = document.querySelector(".winner")
-        showWinner.innerText = "YOU LOST"
+            leftInnerCircle.style.backgroundColor = "transparent";
+            leftMiddleCircle.style.backgroundColor = "transparent";
+            leftOuterCircle.style.backgroundColor = "transparent";
 
-        const againstPc = document.querySelector("#against-pc")
-        againstPc.innerText = "AGAINST PC"
+            rightInnerCircle.style.backgroundColor = "#3B6718";
+            rightMiddleCircle.style.backgroundColor = "#1DA82BC9";
+            rightOuterCircle.style.backgroundColor = "#2E9A2563";
 
-        const ruleBtn = document.querySelector(".rule-btn")
-        ruleBtn.style.marginRight = '60px'
-
-        const nextBtn = document.querySelector(".next-btn")
-        nextBtn.style.display = 'none'
+        },500)
     }
-
 }
 
-const genCompChoice = () => {
-    const options = ['rock', 'paper', 'scissors']
-    const ranIdX = Math.floor(Math.random()*3)
-    return options[ranIdX]
-}
+function playgame(userChoice){
 
-const playgame = (userChoice)=>{
+    setTimeout(()=>{
+        const genCompChoice = compSelect()
 
-    const compChoice = genCompChoice();
+        document.querySelector(".rightIcon").innerHTML = `<img src= ${imgProp?.[genCompChoice]}>`
+        document.querySelector(".rightIcon").style.border = borderProp?.[genCompChoice]
 
-    // update the computer img with choosen one
-    const compHandImg = document.querySelector("#compHandImg");
-    compHandImg.src = imgOptions[compChoice];
-    compHandImg.parentElement.className = `comphand-img image ${imgClass[compChoice]}`
+        if(userChoice===genCompChoice){
+            whoWin.innerHTML = ""
+            againstPc.innerHTML = "Tie"
+            playAgain.innerHTML = 'Replay'
 
-    if (userChoice === compChoice){
-        const showWinner = document.querySelector(".winner");
-        showWinner.innerText = "TIE UP";
+            rightInnerCircle.style.backgroundColor = "transparent"
+            rightMiddleCircle.style.backgroundColor = "transparent"
+            rightOuterCircle.style.backgroundColor = "transparent"
 
-        const replay = document.querySelector(".play-btn");
-        replay.innerText = "Replay";
-
-        const againstPc = document.querySelector("#against-pc");
-        againstPc.innerText = "";
-
-        const ruleBtn = document.querySelector(".rule-btn");
-        ruleBtn.style.marginRight = '60px';
-
-        const nextBtn = document.querySelector(".next-btn");
-        nextBtn.style.display = 'none';
-    }
-    else {
-        let userWin = true
-        if (userChoice === 'rock') {
-            userWin = (compChoice === 'paper') ? false : true;
+            leftOuterCircle.style.backgroundColor = "transparent"
+            leftMiddleCircle.style.backgroundColor = "transparent"
+            leftInnerCircle.style.backgroundColor = "transparent"
         }
-        else if (userChoice === 'paper'){
-            userWin = (compChoice === 'scissors') ? false : true
+        else {
+            let userWin
+            if (userChoice === "rock"){
+                userWin = (genCompChoice === "scissor") ? true : false 
+            }
+            else if (userChoice === 'scissor'){
+                userWin =(genCompChoice === 'paper') ? true : false
+            }
+            else if (userChoice === 'paper'){
+                userWin =(genCompChoice === 'rock') ? true : false
+            }
+            showWinner(userWin)
         }
-        else if (userChoice === 'scissors') {
-            userWin = (compChoice === 'rock') ? false : true
-        }      
-        showWinner(userWin);
-    }
-    
+    },500)
 }
 
-choice.addEventListener("click",(choice) => {
+gameContainer.addEventListener("click",(e)=>{
+    if (e.target.tagName === "IMG"){
 
-    if (choice.target.tagName === "IMG") {
-        let userChoice = choice.target.getAttribute("alt");
-        playgame(userChoice);
+        const userChoice = e.target.getAttribute("alt")
 
-        // hide the hands-container
-        let hands = document.querySelector(".hands-container");
-        hands.style.display = "none";
+        setTimeout(()=>{
+            playContainer.style.display = "none"
+            resultContainer.style.display = "flex"
 
-        // show the score-template
-        const scoreTemp = document.querySelector(".score-template");
-        scoreTemp.style.display = 'flex';
+            leftIcon.innerHTML = `<img src=${e.target.src} alt="${userChoice}">`
+            leftIcon.style.border = borderProp?.[userChoice]
+        },1000)
 
-        // update the user-img with choosen one
-        const userHandImg = document.querySelector("#userHandImg")
-        userHandImg.src = imgOptions[userChoice];
-        userHandImg.parentElement.className = `userhand-img image ${imgClass[userChoice]}`;
-    
+        playgame(userChoice)
     }
 })
 
-const crossBtn = document.querySelector(".cross-btn")
-const ruleBox = document.querySelector(".rule-box")
-
-crossBtn.addEventListener("click",()=>{
-    crossBtn.style.display = "none"
-    ruleBox.style.display = 'none'
+playAgain.addEventListener("click",(e)=>{
+    setTimeout(()=>{
+        resultContainer.style.display = 'none'
+        playContainer.style.display = "flex"
+    },500)
 })
 
-const ruleBtn = document.querySelector(".rule-btn")
-
-ruleBtn.addEventListener("click",()=>{
-    if (ruleBox.style.display === "none"){
-        ruleBox.style.display = ''
-        crossBtn.style.display = ''
-    }
+rulesbutton.addEventListener('click',(e)=>{
+    setTimeout(()=>{
+        rulescontainer.style.display='block'
+        crossImageContainer.style.display='flex'
+    },20)
 })
 
-const playAgain = document.querySelector(".play-btn")
-
-playAgain.addEventListener("click", ()=> {
-
-    scoretemplate.style.display = 'none'
-    choice.style.display = "flex"
-
+crossImageContainer.addEventListener('click',(e)=>{
+    setTimeout(()=>{
+        crossImageContainer.style.display='none'
+        rulescontainer.style.display='none'
+    },20)
 })
 
-
-const nextBtn = document.querySelector(".next-btn")
-
-nextBtn.addEventListener("click",()=>{
-
-    scoreBoard.style.display = "none"
-    scoretemplate.style.display = "none"
-    popUpContainer.style.display='flex'
-
-    const ruleBtn = document.querySelector(".rule-btn")
-    ruleBtn.style.marginRight = '60px'
-
-    nextBtn.style.display = 'none'
-
+nextBtn.addEventListener("click",(e)=>{
+    setTimeout(()=>{
+        header.style.display = 'none'
+        playContainer.style.display = 'none'
+        resultContainer.style.display = 'none'
+        nextBtn.style.display = "none"
+        rulesbutton.style.right = '55px'
+        trophycontainer.style.display = "flex"
+    },500)
 })
 
-const trophyPage = document.querySelector(".trophy-btn")
-    
-trophyPage.addEventListener("click", ()=> {
-    popUpContainer.style.display='none'
-    scoreBoard.style.display = "flex"
-    choice.style.display = "flex"
+trophyPlayBtn.addEventListener("click",(e)=>{
+    setTimeout(()=>{
+        trophycontainer.style.display = "none"
+        header.style.display = 'flex'
+        playContainer.style.display = 'flex'
+    },500)
 })
 
 
