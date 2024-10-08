@@ -412,3 +412,36 @@ img{
         height: 169px;
     }
 }
+
+
+@media only screen and (max-width: 700px) {
+    header .leftSection {
+        font-size: 16px;
+    }
+    header .RightSection .scoreSection {
+        font-size: 18px;
+        width: 125px;
+    }
+    header .RightSection .scoreSection h1 {
+        font-size: 53px;
+        font-weight: 700;
+        line-height: 79.69px;
+        color: #000;
+    }
+    .crossImageContainer {
+        top: 185px;
+    }
+    .resultContainer {
+        gap: 5px;
+    }
+    .resultContainer .middleContainer h1 {
+        font-size: 26px;
+    }
+    .resultContainer .middleContainer h2 {
+        font-size: 18px;
+    }
+    .resultContainer .middleContainer button {
+        width: 147px;
+    }
+   
+}
