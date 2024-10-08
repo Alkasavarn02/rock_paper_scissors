@@ -183,10 +183,15 @@ nextBtn.addEventListener("click",(e)=>{
 })
 
 trophyPlayBtn.addEventListener("click",(e)=>{
+
+    localStorage.clear() 
+    location.reload()  
+    
     setTimeout(()=>{
         trophycontainer.style.display = "none"
         header.style.display = 'flex'
         playContainer.style.display = 'flex'
+
     },500)
 })
 
