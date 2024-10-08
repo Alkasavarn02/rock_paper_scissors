@@ -329,15 +329,15 @@ img{
     height: 220px;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (min-width: 300px) and (max-width: 480px) {
     header .leftSection {
         width: 50%;
         padding-left: 7px;
-        font-size: 15px;
+        font-size: 13px;
     }
     header .RightSection .scoreSection {
-        font-size: 14px;
-        width: 95px;
+        font-size: 12px;
+        width: 90px;
     }
     .resultContainer {
         gap: 5px;
@@ -400,21 +400,21 @@ img{
         font-size: 55px;
     }
     .inner-circle-dimension {
-        width: 120px;
-        height: 120px;
+        width: 98px;
+        height: 98px;
     }
     .middle-circle-dimension {
-        width: 145px;
-        height: 145px;
+        width: 115px;
+        height: 115px;
     }
     .outer-circle-dimension {
-        width: 169px;
-        height: 169px;
+        width: 131px;
+        height: 131px;
     }
 }
 
 
-@media only screen and (max-width: 700px) {
+@media only screen and (min-width: 481px) and (max-width: 700px) {
     header .leftSection {
         font-size: 16px;
     }
